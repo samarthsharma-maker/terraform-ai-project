@@ -12,6 +12,7 @@ resource "aws_ssm_parameter" "ci_check" {
   }
 }
 
+
 output "ci_check_param" {
   description = "Name of the SSM parameter created by the CI check."
   value       = aws_ssm_parameter.ci_check.name
