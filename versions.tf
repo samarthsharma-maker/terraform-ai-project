@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    key          = "vpc/terraform.tfstate"
+    key          = "Project/terraform.tfstate"
     encrypt      = true
     use_lockfile = true
   }
