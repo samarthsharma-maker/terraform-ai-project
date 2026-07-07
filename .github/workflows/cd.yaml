@@ -21,7 +21,6 @@ jobs:
   apply:
     name: Terraform Apply
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - uses: actions/checkout@v5
