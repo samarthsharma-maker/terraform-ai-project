@@ -24,6 +24,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
 
       - name: Debug OIDC claims
         env:
