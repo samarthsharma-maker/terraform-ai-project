@@ -74,7 +74,7 @@ resource "aws_security_group" "admin_ec2" {
 # ---- The instance ----
 resource "aws_instance" "admin" {
   ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t3.small"
+  instance_type               = "t2.medium"
   subnet_id                   = aws_subnet.public_1.id
   associate_public_ip_address = true # browser Instance Connect hits the public IP
   iam_instance_profile        = aws_iam_instance_profile.admin_ec2.name
