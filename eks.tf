@@ -25,6 +25,9 @@ resource "aws_eks_cluster" "scaler_retail_store_cluster" {
     subnet_ids         = [aws_subnet.public_1.id, aws_subnet.public_2.id]
     security_group_ids = [aws_security_group.control_plane.id]
   }
+    access_config {
+        authentication_mode = "API_AND_CONFIG_MAP"
+    }
 
   depends_on = [aws_iam_role_policy_attachment.cluster_eks]
   tags       = local.common_tags
