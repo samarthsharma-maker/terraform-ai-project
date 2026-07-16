@@ -76,17 +76,21 @@ resource "aws_instance" "admin" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.medium"
   subnet_id                   = aws_subnet.public_1.id
-  associate_public_ip_address = true # browser Instance Connect hits the public IP
+  associate_public_ip_address = true
   iam_instance_profile        = aws_iam_instance_profile.admin_ec2.name
   vpc_security_group_ids      = [aws_security_group.admin_ec2.id]
 
-  metadata_options {
-    http_endpoint = "enabled"
-    http_tokens   = "required" # enforce IMDSv2 — important with an admin role attached
+  root_block_device {
+    volume_size = 20
+    volume_type = "gp3"
+    encrypted   = true
   }
 
-  # Ubuntu does NOT ship the Instance Connect agent; install it or the browser
-  # Connect button fails with "unable to push SSH key".
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
   user_data = <<-EOF
     #!/bin/bash
     set -e
